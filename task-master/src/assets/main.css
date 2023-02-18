@@ -1,35 +1,55 @@
-@import './base.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+
+  --primary-color: rgb(14, 13, 13);
+  --bg-color: rgb(21, 22, 21);
+  --btn-color: #1fa059;
+  --font-color: #e5e7e3;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
 
 #app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  height: 100vh;
+  min-width: 200px;
+  background-color: var(--bg-color);
+  color: var(--font-color);
+} 
 
-  font-weight: normal;
+main {
+  flex-grow: 1;
+  padding-inline: 2rem;
+  margin: auto;
+  width: 80%;
 }
 
-a,
-.green {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-  transition: 0.4s;
+header,
+footer {
+  background-color: var(--primary-color);
+  color: var(--font-color);
+  display: flex;
+  place-content: center;
 }
 
-@media (hover: hover) {
-  a:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
+header {
+  position: sticky;
+  top: 0;
+  box-shadow: 0 -5px 20px 1px var(--bg-color);
+  padding: 1rem;
 }
 
-@media (min-width: 1024px) {
-  body {
-    display: flex;
-    place-items: center;
-  }
-
-  #app {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding: 0 2rem;
-  }
+footer {
+  position: sticky;
+  bottom: 0;
+  height: 30px;
 }

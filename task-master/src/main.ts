@@ -1,6 +1,11 @@
+import { TodoService } from './services/todo-service';
 import { createApp } from 'vue'
 import App from './App.vue'
 
 import './assets/main.css'
 
-createApp(App).mount('#app')
+const app = createApp(App);
+app.provide("todoService", new TodoService())
+
+app.mount('#app');
+
