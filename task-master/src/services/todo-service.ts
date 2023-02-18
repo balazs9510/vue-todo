@@ -15,7 +15,6 @@ export class TodoService {
     idIncement = 2;
 
     getTodos(): ITodo[] {
-
         return this.todos;
     }
 
@@ -29,4 +28,7 @@ export class TodoService {
         return this.todos.find(x => x.id == id) ?? null;
     }
 
+    removeTodo(id: number): void {
+        this.todos = this.todos.filter(x => x.id != id);
+    }
 }

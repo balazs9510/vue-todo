@@ -9,6 +9,7 @@
   --primary-color: rgb(14, 13, 13);
   --bg-color: rgb(21, 22, 21);
   --btn-color: #1fa059;
+  --error-color: #b41e1e;
   --font-color: #e5e7e3;
 }
 
@@ -24,7 +25,7 @@ body {
   min-width: 200px;
   background-color: var(--bg-color);
   color: var(--font-color);
-} 
+}
 
 main {
   flex-grow: 1;
@@ -52,4 +53,8 @@ footer {
   position: sticky;
   bottom: 0;
   height: 30px;
+}
+
+i[class*=fa-] {
+  cursor: pointer;
 }

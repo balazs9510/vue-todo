@@ -1,39 +1,50 @@
 <template>
-    <h2>My todo list</h2>
-    <TodoActions @new-todo-added="newToAdded" />
-    <ul v-for="todo in todos">
-        <li>
-            <TodoItem :todoId="todo.id"></TodoItem>
-        </li>
-    </ul>
+    <div class="todo-list-wrapper">
+        <h2>My todo list</h2>
+        <TodoActions @new-todo-added="refreshTodos" />
+
+        <p>Todo count: {{ todos.length }}</p>
+
+        <ul v-for="todo in todos">
+            <li>
+                <TodoItem :todo="todo" @on-todo-deleted="removeTodo" :key="todo.id" />
+            </li>
+        </ul>
+    </div>
 </template>
 
 <script setup lang="ts">
 import TodoActions from './TodoActions.vue';
 import type { TodoService } from '@/services/todo-service';
-import { inject, ref, computed } from 'vue';
-import type { ITodo } from '@/models/itodo';
+import { inject, ref, computed, watch } from 'vue';
 import TodoItem from './TodoItem.vue';
+import type { ITodo } from '@/models/itodo';
 
 const todoService = inject('todoService') as TodoService;
-const todos = ref<ITodo[]>([]);
+const todos = ref<ITodo[]>(todoService.getTodos());
 
-function newToAdded() {
+function refreshTodos() {
     todos.value = [];
     todos.value = todoService.getTodos();
+    console.log(todos.value);
 }
-newToAdded();
+
+function removeTodo(todoId: number) {
+    console.log(todoId);
+    todoService.removeTodo(todoId);
+    refreshTodos();
+}
 
 </script>
 
 <style scoped>
-h2 {
-    margin-bottom: 1rem;
+.todo-list-wrapper {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
 }
 
-ul {
-    margin: 1rem 0;
+.todo-list-wrapper ul {
     list-style-type: none;
-    padding: 0;
 }
 </style>

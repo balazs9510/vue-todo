@@ -1,19 +1,28 @@
 <template>
     <div class="todo-actions-container">
-        <input type="text" v-model="todoDescription" class="form-input">
+        <div style="display: inline-block;">
+            <input type="text" v-model="todoDescription" class="form-input" :class="formClass" @change="validateInput">
+            <label :class="formClass">The description must be filled</label>
+        </div>
+
         <button type="button" @click="addTodo">Add new</button>
     </div>
 </template>
 
 <script setup lang="ts">
 import type { TodoService } from '@/services/todo-service';
-import { inject, ref } from 'vue';
+import { inject, reactive, ref } from 'vue';
 const emit = defineEmits(['newTodoAdded']);
 
 const todoDescription = ref('');
 const todoService = inject('todoService') as TodoService;
-
+const formClass = reactive({
+    'invalid': false,
+    'is-diry': false
+});
 function addTodo() {
+    validateInput();
+    if (formClass['invalid']) return;
     todoService.addTodo({
         id: 0,
         description: todoDescription.value,
@@ -21,6 +30,10 @@ function addTodo() {
     });
     todoDescription.value = '';
     emit("newTodoAdded");
+}
+
+function validateInput() {
+    formClass['invalid'] = todoDescription.value == '';
 }
 
 </script>
@@ -45,5 +58,31 @@ button:hover {
     margin-right: 10px;
     padding-inline: 5px;
     height: 30px;
+    border-radius: 5px;
+}
+
+.todo-actions-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+input.invalid {
+    border: 2px solid var(--error-color);
+    display: block;
+}
+
+input.invalid:focus {
+    outline: 1px solid var(--error-color);
+}
+
+label.invalid {
+    color: var(--error-color);
+    padding-top: 5px;
+    font-style: italic;
+    display: block;
+}
+
+label {
+    display: none;
 }
 </style>
