@@ -1,16 +1,7 @@
 import type { ITodo } from "@/models/itodo";
 
 export class TodoService {
-    todos: ITodo[] = [{
-        id: 0,
-        description: "My first todo",
-        done: true
-    },
-    {
-        id: 1,
-        description: "My second todo",
-        done: false
-    }];
+    todos: ITodo[] = [];
 
     idIncement = 2;
 

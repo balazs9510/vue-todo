@@ -11,8 +11,6 @@
             </li>
         </ul>
     </div>
-
-    <Modal />
 </template>
 
 <script setup lang="ts">

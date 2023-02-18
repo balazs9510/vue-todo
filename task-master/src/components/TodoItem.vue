@@ -1,7 +1,7 @@
 <template>
     <div class="todo-item-wrapper">
         <input type="checkbox" class="checkbox" v-model="todo.done" :name="todoDoneString()" :id="todoDoneString()">
-        <label :for="todoDoneString()" :class="{ done: todo.done }">{{ todo.description }}</label>
+        <label :for="todoDoneString()" :class="{ done: todo.done }">{{ todo.title }}</label>
         <i class="fa-solid fa-pencil"></i> |
         <i class="fa-solid fa-trash" @click="$emit('onTodoDeleted', todo.id)"></i>
     </div>
