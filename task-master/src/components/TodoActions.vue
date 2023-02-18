@@ -1,10 +1,5 @@
 <template>
     <div class="todo-actions-container">
-        <div style="display: inline-block;">
-            <input type="text" v-model="todoDescription" class="form-input" :class="formClass" @change="validateInput">
-            <label :class="formClass">The description must be filled</label>
-        </div>
-
         <button type="button" @click="addTodo">Add new</button>
     </div>
 </template>
@@ -64,25 +59,7 @@ button:hover {
 .todo-actions-container {
     display: flex;
     align-items: flex-start;
+    justify-content: flex-end;
 }
 
-input.invalid {
-    border: 2px solid var(--error-color);
-    display: block;
-}
-
-input.invalid:focus {
-    outline: 1px solid var(--error-color);
-}
-
-label.invalid {
-    color: var(--error-color);
-    padding-top: 5px;
-    font-style: italic;
-    display: block;
-}
-
-label {
-    display: none;
-}
 </style>

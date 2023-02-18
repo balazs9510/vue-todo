@@ -9,14 +9,11 @@
 
 <script setup lang="ts">
 import type { ITodo } from '@/models/itodo';
-import type { TodoService } from '@/services/todo-service';
-import { computed, inject, ref } from 'vue';
+import { ref } from 'vue';
 
-const emit = defineEmits(["onTodoDeleted"])
+defineEmits(["onTodoDeleted"])
 
 const props = defineProps(['todo']);
-const todoService = inject<TodoService>('todoService');
-
 const todo = ref<ITodo>(props.todo)
 
 const todoDoneString = () => {
@@ -52,8 +49,9 @@ input:checked {
     width: 1rem;
     height: 1rem;
 }
-.done{
+
+.done {
     text-decoration: line-through solid var(--btn-color) 3px;
-   
+
 }
 </style>

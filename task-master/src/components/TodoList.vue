@@ -3,7 +3,7 @@
         <h2>My todo list</h2>
         <TodoActions @new-todo-added="refreshTodos" />
 
-        <p>Todo count: {{ todos.length }}</p>
+        <p class="italic">You only have {{ todos.length }} todo(s) left.</p>
 
         <ul v-for="todo in todos">
             <li>
@@ -11,10 +11,13 @@
             </li>
         </ul>
     </div>
+
+    <Modal />
 </template>
 
 <script setup lang="ts">
 import TodoActions from './TodoActions.vue';
+import Modal from './modal/Modal.vue';
 import type { TodoService } from '@/services/todo-service';
 import { inject, ref, computed, watch } from 'vue';
 import TodoItem from './TodoItem.vue';

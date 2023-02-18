@@ -13,6 +13,7 @@ import TodoList from './components/TodoList.vue';
   <footer>
     <p>Footer</p>
   </footer>
+
 </template>
 
 <style scoped></style>
